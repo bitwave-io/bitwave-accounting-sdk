@@ -23,6 +23,7 @@ Requires Go 1.25+. No external dependencies.
 | `report` | `ledger`-cli-style reports: balance, register, equity, stats, CSV. |
 | `format` | hledger / ledger / beancount read + write interop (incl. a cross-tool compatibility suite under `format/compat`). |
 | `config` | The per-project `.bw-ledger.json` local/cloud marker file. |
+| `expense` | Expense-report views over journal entries: filtering, grouping, tag extraction, and CSV/JSON/HTML rendering. |
 
 ## Why
 
