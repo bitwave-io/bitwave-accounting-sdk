@@ -1,0 +1,21 @@
+; hledger / ledger optional (CODE) field after the status flag. Commonly
+; used for check numbers, invoice references, or transaction hashes.
+;
+; See: hledger.org/journal.html — "An optional (CODE) may follow
+;      transaction dates."
+
+account Assets:Checking
+account Expenses:Utilities
+account Income:Salary
+
+2024-04-01 * (CHK#1042) PG&E
+    Expenses:Utilities             $87.21
+    Assets:Checking                -$87.21
+
+2024-04-15 * (DEP-2024-04) Payroll deposit
+    Assets:Checking              $5000.00
+    Income:Salary               -$5000.00
+
+2024-04-20 ! (INV-2024-006) Acme Consulting     ; pending invoice
+    Expenses:Utilities            $100.00
+    Assets:Checking              -$100.00

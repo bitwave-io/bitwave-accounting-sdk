@@ -1,0 +1,8 @@
+Project:       fixture
+Base currency: USD
+Accounts:      4 declared, 4 observed
+Entries:       4 (4 balanced, 2 cleared, 1 pending)
+Postings:      8
+Commodities:   2
+Prices:        1
+Date range:    2024-01-10 -> 2024-02-01

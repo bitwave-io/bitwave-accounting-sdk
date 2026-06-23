@@ -1,0 +1,16 @@
+account Assets:Checking
+account Expenses:Rent
+account Expenses:Utilities
+account Income:Salary
+
+2024-03-01 * Acme Corp
+    Assets:Checking                         $5000.00
+    Income:Salary                           -$5000.00
+
+2024-03-05 ! Riverside Apartments
+    Expenses:Rent                           $1800.00
+    Assets:Checking                         -$1800.00
+
+2024-03-10 * Edison Electric
+    Expenses:Utilities                      $92.18
+    Assets:Checking                         -$92.18

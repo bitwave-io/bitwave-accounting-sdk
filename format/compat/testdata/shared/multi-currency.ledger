@@ -1,0 +1,10 @@
+; Same logical book as multi-currency.journal and multi-currency.beancount.
+
+account Assets:Cash
+account Assets:Crypto:BTC
+
+P 2024-01-15 BTC $50000.00
+
+2024-01-15 * Bought BTC
+    Assets:Crypto:BTC      1.00 BTC @ $50000.00
+    Assets:Cash         -$50000.00

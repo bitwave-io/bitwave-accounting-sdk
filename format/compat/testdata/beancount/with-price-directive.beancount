@@ -1,0 +1,13 @@
+; Beancount price directive establishes a market price for a commodity.
+; In our model this becomes a P directive in the canonical ledger Print
+; output.
+
+2024-01-01 open Assets:Crypto:BTC BTC
+2024-01-01 open Assets:Cash USD
+2024-01-01 commodity BTC
+
+2024-01-15 price BTC 50000 USD
+
+2024-01-15 * "Bought BTC"
+  Assets:Crypto:BTC                    1.00 BTC {50000 USD}
+  Assets:Cash                     -50000.00 USD

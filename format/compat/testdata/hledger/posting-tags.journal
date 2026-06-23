@@ -1,0 +1,10 @@
+; hledger posting-level inline tags via `; key:value` comments. The tags
+; are parsed into Posting.Note's structured metadata; balances are
+; unaffected.
+
+account Assets:Cash
+account Expenses:Travel
+
+2024-07-15 * Trip to Paris
+    Expenses:Travel       $500.00   ; trip:paris-2024 category:flight
+    Assets:Cash          -$500.00   ; reimbursable:no

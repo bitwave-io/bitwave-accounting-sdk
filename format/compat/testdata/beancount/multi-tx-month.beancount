@@ -1,0 +1,30 @@
+; A realistic month of activity in beancount syntax: opening balances, a
+; few paychecks, recurring expenses, and a savings transfer. Exercises
+; date ordering, multiple narrations, and balance accumulation.
+
+2024-01-01 open Assets:US:BofA:Checking USD
+2024-01-01 open Assets:US:BofA:Savings USD
+2024-01-01 open Income:Salary USD
+2024-01-01 open Expenses:Rent USD
+2024-01-01 open Expenses:Groceries USD
+2024-01-01 open Equity:Opening USD
+
+2024-01-01 * "Opening balance"
+  Assets:US:BofA:Checking          1500.00 USD
+  Equity:Opening                  -1500.00 USD
+
+2024-01-15 * "Acme Corp" "Mid-month payroll"
+  Assets:US:BofA:Checking          2500.00 USD
+  Income:Salary                   -2500.00 USD
+
+2024-01-20 * "Riverside Apartments" "Rent"
+  Expenses:Rent                    1800.00 USD
+  Assets:US:BofA:Checking         -1800.00 USD
+
+2024-01-25 * "Trader Joe's" "Weekly groceries"
+  Expenses:Groceries                124.36 USD
+  Assets:US:BofA:Checking          -124.36 USD
+
+2024-01-31 * "Transfer to savings"
+  Assets:US:BofA:Savings            500.00 USD
+  Assets:US:BofA:Checking          -500.00 USD

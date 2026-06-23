@@ -1,0 +1,11 @@
+; Multi-currency beancount: open accounts for BTC and USD, post a
+; transaction with cost-basis annotation. Our shim parses the cost basis
+; `{50000 USD}` but doesn't model lot tracking — the balances still come
+; out right because the amount + commodity are extracted correctly.
+
+2024-01-01 open Assets:Cash USD
+2024-01-01 open Assets:Crypto:BTC BTC
+
+2024-01-15 * "Bought BTC"
+  Assets:Crypto:BTC                    1.00 BTC {50000 USD}
+  Assets:Cash                     -50000.00 USD

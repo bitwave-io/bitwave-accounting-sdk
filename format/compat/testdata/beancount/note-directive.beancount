@@ -1,0 +1,7 @@
+; Beancount note directive attaches a free-form note to an account. We
+; don't model arbitrary notes (the existing Posting.Note is for inline
+; comments, not standalone note directives). must_fail.
+
+2024-01-01 open Assets:Cash USD
+
+2024-03-01 note Assets:Cash "Forgot wallet at restaurant"

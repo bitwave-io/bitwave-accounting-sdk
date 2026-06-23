@@ -1,0 +1,10 @@
+; Smallest possible valid ledger journal: one cleared two-posting transaction.
+; Hand-authored from ledger-cli.org/doc — equivalent to `hledger.org/journal.html`
+; "Start a journal" example.
+
+account Assets:Cash
+account Income:Salary
+
+2024-01-15 * Acme Corp
+    Assets:Cash         $1000.00
+    Income:Salary      -$1000.00

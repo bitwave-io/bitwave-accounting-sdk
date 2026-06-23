@@ -1,0 +1,16 @@
+2011-01-01 * Opening balance
+    Assets:Bank                    10.00 GBP
+    Equity:Opening balance
+
+2012-01-02 * List XXX before AAA to test sorting
+    Assets:XXX                      5.00 GBP
+    Assets:Bank
+
+2012-01-03 * List AAA after XXX to test sorting
+    Assets:AAA                      3.00 GBP
+    Assets:Bank
+
+2012-01-03 * Account name with UTF-8
+    Assets:♚                        3.00 GBP
+    Assets:Testing123ÕßDone
+

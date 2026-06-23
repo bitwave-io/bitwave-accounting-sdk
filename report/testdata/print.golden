@@ -1,0 +1,24 @@
+; fixture — USD ledger
+
+account Assets:Cash
+account Assets:Crypto:BTC
+account Expenses:Food
+account Income:Salary
+
+P 2024-01-15 BTC $50000.00
+
+2024-01-10 * Acme Corp
+    Assets:Cash                             $1000.00
+    Income:Salary                           -$1000.00
+
+2024-01-15 Coffee shop
+    Expenses:Food                           $5.25
+    Assets:Cash                             -$5.25
+
+2024-01-15 ! Bought BTC
+    Assets:Crypto:BTC                       1.00 BTC @ $50000.00
+    Assets:Cash                             -$50000.00
+
+2024-02-01 * Grocer
+    Expenses:Food                           $75.00
+    Assets:Cash                             -$75.00

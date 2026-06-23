@@ -1,0 +1,3 @@
+{
+  "skip": "uses ledger's `:tag:foo:bar:` colon-delimited tag syntax (we use `key:value`)"
+}

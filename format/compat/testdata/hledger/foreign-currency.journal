@@ -1,0 +1,16 @@
+; Multi-currency journal mixing USD and EUR. The @ price annotation is used
+; only on the buy-side (where USD->EUR conversion balances against a USD
+; debit). For EUR-denominated expenses, both sides stay in EUR — that's how
+; hledger and ledger both balance per-commodity.
+
+account Assets:Cash:USD
+account Assets:Cash:EUR
+account Expenses:Travel
+
+2024-08-01 * Buy EUR for trip
+    Assets:Cash:EUR             100.00 EUR @ $1.10
+    Assets:Cash:USD            -$110.00
+
+2024-08-05 * Espresso in Rome
+    Expenses:Travel               3.50 EUR
+    Assets:Cash:EUR              -3.50 EUR

@@ -1,0 +1,10 @@
+; Beancount total-cost annotation: `{{TOTAL CCY}}` instead of per-unit
+; `{PRICE CCY}`. Our shim normalizes both into a UnitPrice for balance
+; math (TOTAL gets divided by abs(quantity)).
+
+2024-01-01 open Assets:Brokerage:GOOG GOOG
+2024-01-01 open Assets:Cash USD
+
+2024-02-01 * "Buy 10 GOOG at total cost $1500"
+  Assets:Brokerage:GOOG              10 GOOG {{1500.00 USD}}
+  Assets:Cash                    -1500.00 USD

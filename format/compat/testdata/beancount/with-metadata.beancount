@@ -1,0 +1,15 @@
+; Beancount allows arbitrary metadata `key: "value"` lines under any
+; directive. Our shim silently ignores them — they don't affect balances
+; or round-trip equivalence.
+
+2024-01-01 open Assets:Cash USD
+  description: "Primary checking account"
+  bank: "BofA"
+
+2024-01-01 open Income:Salary USD
+
+2024-01-15 * "Acme Corp" "Payroll"
+  doc: "scan-2024-01-15.pdf"
+  Assets:Cash         1000.00 USD
+    posting-meta: "verified"
+  Income:Salary      -1000.00 USD

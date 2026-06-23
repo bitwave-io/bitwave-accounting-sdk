@@ -1,0 +1,13 @@
+; Large numeric values with thousand separators. Both `1,234,567.89` and
+; `1234567.89` forms must parse to the same big.Rat.
+
+account Assets:Investments:Brokerage
+account Equity:Opening
+
+2024-01-01 * Opening balance
+    Assets:Investments:Brokerage      $1,234,567.89
+    Equity:Opening                   -$1,234,567.89
+
+2024-02-01 * Quarterly contribution
+    Assets:Investments:Brokerage         $50,000.00
+    Equity:Opening                      -$50,000.00

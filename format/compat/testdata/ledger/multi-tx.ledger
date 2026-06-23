@@ -1,0 +1,23 @@
+; Multiple transactions across two months, mixing cleared / pending status,
+; payee comments, and posting-level notes. Exercises filter & date logic.
+
+account Assets:Cash
+account Expenses:Food
+account Expenses:Rent
+account Income:Salary
+
+2024-01-01 * Acme Corp                                  ; January paycheck
+    Assets:Cash                       $5000.00
+    Income:Salary                    -$5000.00
+
+2024-01-05 * Landlord LLC
+    Expenses:Rent                     $1500.00
+    Assets:Cash                      -$1500.00
+
+2024-01-12 * Grocery Store
+    Expenses:Food                       $85.42
+    Assets:Cash                         -$85.42
+
+2024-02-01 ! Acme Corp                                  ; pending - pay date not cleared yet
+    Assets:Cash                       $5000.00
+    Income:Salary                    -$5000.00

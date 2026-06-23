@@ -1,0 +1,14 @@
+; hledger supports per-posting status flags — an individual leg of a
+; transaction can be marked cleared even when the transaction itself is
+; pending. This is useful for transactions that clear in pieces (e.g. a
+; transfer that posts to the source account today and the destination
+; account tomorrow).
+
+account Assets:Cash
+account Assets:Bank:Savings
+account Expenses:Fees
+
+2024-06-01 ! Transfer to savings
+    * Assets:Bank:Savings           $500.00
+    Assets:Cash                    -$502.50
+    * Expenses:Fees                   $2.50

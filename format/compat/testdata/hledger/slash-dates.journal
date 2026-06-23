@@ -1,0 +1,21 @@
+; hledger / ledger-cli both accept YYYY/MM/DD dates. This is the
+; canonical example from hledger.org/journal.html:
+;
+;     2008/01/01 income
+;         assets:bank:checking   $1
+;         income:salary         $-1
+;
+; Note: hledger uses lowercase top-level account names by convention but
+; both cases are valid; we use Title-cased here to match the rest of our
+; test corpus and our InferAccountType heuristic.
+
+account Assets:Bank:Checking
+account Income:Salary
+
+2008/01/01 * income
+    Assets:Bank:Checking          $1.00
+    Income:Salary                -$1.00
+
+2008/01/15 * payroll
+    Assets:Bank:Checking          $1.00
+    Income:Salary                -$1.00

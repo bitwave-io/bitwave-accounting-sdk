@@ -1,0 +1,11 @@
+; Simplest valid beancount: open two accounts, post one balanced
+; transaction. The narration ("Opening payroll") becomes our Entry.Payee.
+;
+; See: beancount.github.io/docs/beancount_language_syntax.html
+
+2024-01-01 open Assets:US:BofA:Checking USD
+2024-01-01 open Income:Salary USD
+
+2024-01-15 * "Acme Corp" "Opening payroll"
+  Assets:US:BofA:Checking          1000.00 USD
+  Income:Salary                   -1000.00 USD

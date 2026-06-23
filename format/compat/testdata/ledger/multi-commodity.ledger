@@ -1,0 +1,12 @@
+; Multi-commodity transaction with @ unit price annotation. The buy debits
+; 1 BTC into the crypto account at $50000/BTC and credits cash. This is the
+; canonical ledger-cli "Buying foreign currency" example from the manual.
+
+account Assets:Cash
+account Assets:Crypto:BTC
+
+P 2024-01-15 BTC $50000.00
+
+2024-01-15 * Bought BTC
+    Assets:Crypto:BTC                  1.00 BTC @ $50000.00
+    Assets:Cash                      -$50000.00

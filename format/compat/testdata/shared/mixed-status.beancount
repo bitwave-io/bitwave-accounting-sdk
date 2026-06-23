@@ -1,0 +1,18 @@
+; Three transactions with mixed status: cleared, pending, cleared.
+
+2024-01-01 open Assets:Checking USD
+2024-01-01 open Expenses:Rent USD
+2024-01-01 open Expenses:Utilities USD
+2024-01-01 open Income:Salary USD
+
+2024-03-01 * "Acme Corp"
+  Assets:Checking      5000.00 USD
+  Income:Salary       -5000.00 USD
+
+2024-03-05 ! "Riverside Apartments"
+  Expenses:Rent        1800.00 USD
+  Assets:Checking     -1800.00 USD
+
+2024-03-10 * "Edison Electric"
+  Expenses:Utilities     92.18 USD
+  Assets:Checking       -92.18 USD

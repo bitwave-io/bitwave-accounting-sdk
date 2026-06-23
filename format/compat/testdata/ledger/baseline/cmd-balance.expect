@@ -1,0 +1,3 @@
+{
+  "skip": "uses bare numeric amounts (no commodity); requires `D <amount>` default-commodity directive support"
+}

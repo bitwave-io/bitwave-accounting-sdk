@@ -1,0 +1,10 @@
+D 1000.00 GBP
+
+2011-03-04 Buy shares
+    Assets:Broker           2 AAA @ 0.90 GBP
+    Assets:Bank
+
+2011-03-05 Buy shares
+    Assets:Broker           2 AAA @ 1.00 GBP
+    Assets:Bank
+

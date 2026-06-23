@@ -1,0 +1,14 @@
+; Same logical book as simple.ledger and simple.beancount.
+; The shared_test compares all three to a single balances sidecar.
+
+account Assets:Cash
+account Expenses:Food
+account Income:Salary
+
+2024-01-01 * Acme Corp
+    Assets:Cash         $1000.00
+    Income:Salary      -$1000.00
+
+2024-01-15 * Diner
+    Expenses:Food         $25.50
+    Assets:Cash          -$25.50

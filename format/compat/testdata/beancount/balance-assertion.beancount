@@ -1,0 +1,11 @@
+; Beancount balance assertions are not modeled — our parser surfaces a clean
+; ErrUnsupportedDirective that callers can route on. The .expect sidecar
+; marks this fixture as must_fail.
+
+2024-01-01 open Assets:Cash USD
+
+2024-01-15 * "Opening deposit"
+  Assets:Cash       1000.00 USD
+  Equity:Opening   -1000.00 USD
+
+2024-01-16 balance Assets:Cash 1000.00 USD

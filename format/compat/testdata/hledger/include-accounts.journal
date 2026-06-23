@@ -1,0 +1,4 @@
+; Account declarations, included by include-main.journal.
+account Assets:Cash
+account Expenses:Food
+account Income:Salary

@@ -1,0 +1,4 @@
+; Opening transaction, included by include-main.journal.
+2024-01-01 * Opening payroll
+    Assets:Cash                    $1000.00
+    Income:Salary                 -$1000.00

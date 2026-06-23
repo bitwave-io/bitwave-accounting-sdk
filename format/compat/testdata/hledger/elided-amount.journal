@@ -1,0 +1,21 @@
+; hledger / ledger infer one elided posting amount per transaction.
+; Per the SPEC: "if one amount is missing, ledger infers the amount needed
+; to balance the transaction."
+;
+; This fixture has three transactions, each missing one posting amount.
+
+account Assets:Cash
+account Expenses:Food
+account Income:Salary
+
+2024-05-01 * Acme paycheck
+    Assets:Cash                       $2000.00
+    Income:Salary
+
+2024-05-05 * Grocery run
+    Expenses:Food                       $42.18
+    Assets:Cash
+
+2024-05-12 * Lunch
+    Expenses:Food                       $12.50
+    Assets:Cash

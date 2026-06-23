@@ -1,0 +1,5 @@
+# Vendored upstream plain-text-accounting binaries used only by the
+# `compat_external`-tagged tests. They are large (100MB+) and platform-specific;
+# fetch them with the vendoring script described in format/compat/bin/README.md.
+# The metadata files (versions.json, SHA256SUMS, README.md) are tracked.
+format/compat/bin/*/

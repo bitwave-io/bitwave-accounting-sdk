@@ -1,0 +1,8 @@
+; Beancount `option` directives configure the engine — title, default
+; commodity, etc. Not modeled by our shim; we surface a clear
+; ErrUnsupportedDirective.
+
+option "title" "Example Beancount file"
+option "operating_currency" "USD"
+
+2024-01-01 open Assets:Cash USD

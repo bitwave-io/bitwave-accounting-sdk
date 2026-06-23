@@ -1,0 +1,8 @@
+{
+  "Assets:US:BofA:Checking":  "1575.64 USD",
+  "Assets:US:BofA:Savings":    "500.00 USD",
+  "Income:Salary":           "-2500.00 USD",
+  "Expenses:Rent":            "1800.00 USD",
+  "Expenses:Groceries":        "124.36 USD",
+  "Equity:Opening":          "-1500.00 USD"
+}

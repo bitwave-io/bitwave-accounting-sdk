@@ -1,0 +1,13 @@
+; hledger uses `include <path>` to compose journals across files.
+; Relative paths resolve from the including file's directory.
+;
+; This fixture validates the include directive end-to-end: the main
+; journal pulls in account declarations from one child and transactions
+; from another. The known balances reflect the full composed view.
+
+include include-accounts.journal
+include include-transactions.journal
+
+2024-03-01 * Coffee shop
+    Expenses:Food                    $4.50
+    Assets:Cash                     -$4.50

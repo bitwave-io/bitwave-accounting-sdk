@@ -1,0 +1,10 @@
+; Beancount uses `!` for unsteady (pending review) transactions, equivalent
+; to ledger's `!` pending state. Both balance the same way — the flag is
+; metadata for the reviewer.
+
+2024-01-01 open Assets:Cash USD
+2024-01-01 open Income:Consulting USD
+
+2024-02-10 ! "Acme Consulting" "Invoice not yet paid"
+  Assets:Cash                      1000.00 USD
+  Income:Consulting               -1000.00 USD

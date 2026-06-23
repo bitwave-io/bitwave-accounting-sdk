@@ -1,0 +1,53 @@
+; A larger realistic fixture: one quarter of a small ledger with payroll,
+; recurring rent, utilities, groceries, and a one-off purchase. Exercises
+; date ordering, account grouping, and balance accumulation across many
+; transactions.
+
+account Assets:Checking
+account Assets:Savings
+account Expenses:Rent
+account Expenses:Utilities:Electric
+account Expenses:Utilities:Internet
+account Expenses:Groceries
+account Expenses:Misc
+account Income:Salary
+
+2024-01-01 * Acme Corp                                  ; January payroll
+    Assets:Checking                $4500.00
+    Income:Salary                 -$4500.00
+
+2024-01-05 * Riverside Apartments
+    Expenses:Rent                  $1800.00
+    Assets:Checking               -$1800.00
+
+2024-01-10 * Edison Electric
+    Expenses:Utilities:Electric      $85.00
+    Assets:Checking                 -$85.00
+
+2024-01-15 * Comcast
+    Expenses:Utilities:Internet      $79.99
+    Assets:Checking                 -$79.99
+
+2024-01-18 * Trader Joe's
+    Expenses:Groceries              $124.36
+    Assets:Checking                -$124.36
+
+2024-01-31 * Transfer to savings
+    Assets:Savings                  $500.00
+    Assets:Checking                -$500.00
+
+2024-02-01 * Acme Corp                                  ; February payroll
+    Assets:Checking                $4500.00
+    Income:Salary                 -$4500.00
+
+2024-02-05 * Riverside Apartments
+    Expenses:Rent                  $1800.00
+    Assets:Checking               -$1800.00
+
+2024-02-14 * Local Florist
+    Expenses:Misc                    $48.00
+    Assets:Checking                 -$48.00
+
+2024-03-01 * Acme Corp                                  ; March payroll
+    Assets:Checking                $4500.00
+    Income:Salary                 -$4500.00

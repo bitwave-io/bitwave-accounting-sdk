@@ -1,0 +1,12 @@
+; ledger-cli @@ syntax: total price for the whole lot rather than per-unit.
+; This is the canonical "Buying foreign currency" example from
+; ledger-cli.org/doc — buying 2 BTC for a total of $100000 means the
+; unit price is $50000, and our parser must do that division so the
+; entry balances correctly.
+
+account Assets:Crypto:BTC
+account Assets:Cash
+
+2024-01-15 * Bought 2 BTC at average $50000/each
+    Assets:Crypto:BTC          2 BTC @@ $100000.00
+    Assets:Cash             -$100000.00

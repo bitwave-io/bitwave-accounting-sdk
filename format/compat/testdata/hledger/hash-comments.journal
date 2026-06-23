@@ -1,0 +1,15 @@
+# This is a hledger-style file comment. The whole line is ignored.
+# hledger.org/journal.html: "Lines in the journal beginning with a
+# semicolon (;) or hash (#) or star (*) are comments, and will be ignored."
+
+* org-mode-style file comment — useful for fold/navigate workflows
+* another one
+
+; classic ledger-cli comment also works
+
+account Assets:Cash
+account Expenses:Coffee
+
+2024-03-01 * Coffee shop                                ; inline comment
+    Expenses:Coffee     $4.50
+    Assets:Cash        -$4.50

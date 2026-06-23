@@ -1,0 +1,7 @@
+; pad is the beancount "fill in the gap to make balance match" directive.
+; Not modeled — fixture must_fail.
+
+2024-01-01 open Assets:Cash USD
+2024-01-01 open Equity:Opening USD
+
+2024-01-15 pad Assets:Cash Equity:Opening

@@ -1,0 +1,3 @@
+{
+  "skip": "uses inline expression `($10,00 + $2,50)` (parenthesized arithmetic) — not supported"
+}

@@ -1,0 +1,3 @@
+{
+  "skip": "uses account sub-directives (check / alias / payee / default) which our parser doesn't model"
+}
