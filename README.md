@@ -74,4 +74,6 @@ adds on-chain wallets and an on-chain → journal sync bridge on top.
 
 ## License
 
-See repository.
+[Mozilla Public License 2.0](LICENSE). You can link this SDK into any
+software, open or closed; modifications to the SDK's own files must be
+shared under the MPL.
