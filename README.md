@@ -1,5 +1,8 @@
 # bitwave-accounting-sdk
 
+[![CI](https://github.com/bitwave-io/bitwave-accounting-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/bitwave-io/bitwave-accounting-sdk/actions/workflows/ci.yml)
+[![Go Reference](https://pkg.go.dev/badge/github.com/bitwave-io/bitwave-accounting-sdk.svg)](https://pkg.go.dev/github.com/bitwave-io/bitwave-accounting-sdk)
+
 Plain-text double-entry accounting for Go, compatible with the
 plain-text-accounting ecosystem (`hledger`, `ledger`, `beancount`).
 
@@ -13,6 +16,36 @@ go get github.com/bitwave-io/bitwave-accounting-sdk
 ```
 
 Requires Go 1.25+. No external dependencies.
+
+> **Stability:** v0 — the API may change between minor versions until v1.0.0.
+> Pin a tagged release.
+
+## Quick start
+
+Parse a journal (hledger / ledger / beancount syntax all work) and run a
+balance report:
+
+```go
+package main
+
+import (
+	"log"
+	"os"
+
+	"github.com/bitwave-io/bitwave-accounting-sdk/format"
+	"github.com/bitwave-io/bitwave-accounting-sdk/report"
+)
+
+func main() {
+	p, err := format.ParseFile("main.journal")
+	if err != nil {
+		log.Fatal(err)
+	}
+	if err := report.Balance(os.Stdout, p, report.Filter{}); err != nil {
+		log.Fatal(err)
+	}
+}
+```
 
 ## Packages
 
