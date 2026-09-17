@@ -17,8 +17,10 @@ import (
 	"bufio"
 	"fmt"
 	"io"
+	"io/fs"
 	"math/big"
 	"os"
+	"path"
 	"path/filepath"
 	"sort"
 	"strings"
@@ -115,11 +117,39 @@ func ParseFile(path string) (*model.Project, error) {
 	return p, nil
 }
 
+// ParseFS parses a file and its includes through an explicit filesystem
+// capability. Names use io/fs slash-separated paths relative to fsys's root;
+// absolute paths and includes that leave that root are rejected. A filesystem
+// that follows symlinks must itself enforce confinement (for example os.Root.FS).
+// Format detection and include semantics otherwise match ParseFile.
+func ParseFS(fsys fs.FS, name string) (*model.Project, error) {
+	if fsys == nil || !fs.ValidPath(name) {
+		return nil, fmt.Errorf("invalid filesystem path %q", name)
+	}
+	f, err := fsys.Open(name)
+	if err != nil {
+		return nil, err
+	}
+	defer f.Close()
+	p := &model.Project{}
+	ctx := parseCtx{baseDir: path.Dir(name), visited: map[string]bool{name: true}, fs: fsys}
+	ext := strings.ToLower(path.Ext(name))
+	if ext == ".beancount" || ext == ".bean" {
+		if err := parseBeancountInto(f, p, ctx); err != nil {
+			return nil, err
+		}
+	} else if err := parseInto(f, p, ctx); err != nil {
+		return nil, err
+	}
+	return p, nil
+}
+
 // parseCtx threads filesystem context (for include resolution) through the
 // recursive parser. The zero value disables include support.
 type parseCtx struct {
 	baseDir string          // directory to resolve `include <relpath>` against; "" disables includes
 	visited map[string]bool // set of absolute file paths already being parsed (cycle detection)
+	fs      fs.FS           // optional capability for ParseFS; nil preserves ParseFile
 }
 
 func parseInto(r io.Reader, p *model.Project, ctx parseCtx) error {
@@ -254,24 +284,45 @@ func parseInto(r io.Reader, p *model.Project, ctx parseCtx) error {
 			if ctx.baseDir == "" {
 				return fmt.Errorf("line %d: include %q requires ParseFile (no filesystem context for Parse)", lineNo, rel)
 			}
-			target := rel
-			if !filepath.IsAbs(target) {
-				target = filepath.Join(ctx.baseDir, rel)
+			var absTarget string
+			var err error
+			var child io.ReadCloser
+			if ctx.fs != nil {
+				if path.IsAbs(rel) || strings.Contains(rel, "\\") {
+					return fmt.Errorf("line %d: include path %q must stay within the filesystem root", lineNo, rel)
+				}
+				absTarget = path.Join(ctx.baseDir, rel)
+				if !fs.ValidPath(absTarget) {
+					return fmt.Errorf("line %d: include path %q leaves the filesystem root", lineNo, rel)
+				}
+				if ctx.visited[absTarget] {
+					return fmt.Errorf("line %d: include cycle detected at %q", lineNo, rel)
+				}
+				child, err = ctx.fs.Open(absTarget)
+			} else {
+				target := rel
+				if !filepath.IsAbs(target) {
+					target = filepath.Join(ctx.baseDir, rel)
+				}
+				absTarget, err = filepath.Abs(target)
+				if err != nil {
+					return fmt.Errorf("line %d: include %q: %w", lineNo, rel, err)
+				}
+				if ctx.visited[absTarget] {
+					return fmt.Errorf("line %d: include cycle detected at %q", lineNo, rel)
+				}
+				child, err = os.Open(absTarget)
 			}
-			absTarget, err := filepath.Abs(target)
-			if err != nil {
-				return fmt.Errorf("line %d: include %q: %w", lineNo, rel, err)
-			}
-			if ctx.visited[absTarget] {
-				return fmt.Errorf("line %d: include cycle detected at %q", lineNo, rel)
-			}
-			child, err := os.Open(absTarget)
 			if err != nil {
 				return fmt.Errorf("line %d: include %q: %w", lineNo, rel, err)
 			}
 			childCtx := parseCtx{
 				baseDir: filepath.Dir(absTarget),
 				visited: cloneVisited(ctx.visited),
+				fs:      ctx.fs,
+			}
+			if ctx.fs != nil {
+				childCtx.baseDir = path.Dir(absTarget)
 			}
 			childCtx.visited[absTarget] = true
 			if perr := parseInto(child, p, childCtx); perr != nil {
